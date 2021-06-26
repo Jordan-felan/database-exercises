@@ -113,4 +113,16 @@ JOIN salaries AS s ON e.emp_no = s.emp_no
 JOIN dept_manager AS dm ON e.emp_no = dm.emp_no
     AND dm.to_date > CURDATE()
 JOIN departments AS d USING(dept_no)
-ORDER BY dept_name;gfgfg
+ORDER BY dept_name;
+
+SELECT
+    d.dept_name AS 'Department Name',
+    CONCAT(e.first_name, ' ', e.last_name) AS current_department_manager,
+    s.salary
+FROM employees AS e
+         JOIN salaries AS s ON e.emp_no = s.emp_no
+    AND s.to_date > CURDATE()
+         JOIN dept_manager AS dm ON e.emp_no = dm.emp_no
+    AND dm.to_date > CURDATE()
+         JOIN departments AS d USING(dept_no)
+ORDER BY dept_name;
